@@ -26,6 +26,4 @@
 (let [square-inch-claims (reduce concat (map claim-area claims))
       square-inch-claim-frequencies (frequencies square-inch-claims)
       contested-square-inch-claims (filter #(> (second %) 1) square-inch-claim-frequencies)]
-  (count contested-square-inch-claims)
-;;square-inch-claim-frequencies
-  )
+  (count contested-square-inch-claims))
