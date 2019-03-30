@@ -4,3 +4,6 @@ load-string doesn't work for "08" "09",
 Integer/parseInt
 
 apply
+
+???
+(= \A (string/upper-case \a)) -> false
