@@ -36,7 +36,7 @@
 
 ;; clojure.string/lower-case outputs a string, not a character.
 ;; first is applied to turn the string (containing a single character)
-;; into a character
+;; into a character.
 (def units (set (map (comp first string/lower-case) (set polymer))))
 
 (defn strip [unit]
