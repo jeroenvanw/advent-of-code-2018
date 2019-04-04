@@ -25,11 +25,13 @@
   (remove-pairs '() polymer))
 
 ;; part 1
+
 (comment
 (count (react polymer))
 )
 
 ;; part 2
+
 (def units (set (map (comp first string/lower-case) (set polymer))))
 
 (defn strip [unit]
