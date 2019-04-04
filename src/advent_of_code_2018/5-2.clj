@@ -6,7 +6,7 @@
 
 (def polymer (seq (first (input/lines 5))))
 
-(defn is-pair [char1 char2]
+(defn form-pair? [char1 char2]
   (and  (= (string/lower-case char1) (string/lower-case char2))
         (not= char1 char2)))
 
@@ -16,7 +16,7 @@
       seen
     (empty? seen)
       (recur (list (first unseen)) (rest unseen))
-    (is-pair (first seen) (first unseen))
+    (form-pair? (first seen) (first unseen))
       (recur (rest seen) (rest unseen))
     :else
       (recur (conj seen (first unseen)) (rest unseen))))
