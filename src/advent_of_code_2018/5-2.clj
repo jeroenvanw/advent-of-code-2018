@@ -4,6 +4,8 @@
   (:require [advent-of-code-2018.input :as input]
             [clojure.string :as string]))
 
+;; The input text is a single line that ends in a newline character.
+;; first is applied to remove the newline character.
 (def polymer (seq (first (input/lines 5))))
 
 (defn pair? [char1 char2]
@@ -32,6 +34,9 @@
 
 ;; part 2
 
+;; clojure.string/lower-case outputs a string, not a character.
+;; first is applied to turn the string (containing a single character)
+;; into a character
 (def units (set (map (comp first string/lower-case) (set polymer))))
 
 (defn strip [unit]
