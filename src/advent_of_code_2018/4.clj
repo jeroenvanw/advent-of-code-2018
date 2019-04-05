@@ -1,13 +1,14 @@
-(ns advent-of-code-2018.4
+(ns advent-of-code-2018.4-2
   (:require [advent-of-code-2018.input :as input]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [clojure.core.reducers :as r]))
 
 (def records (sort (input/lines 4)))
 
 ;; split records into vec of shifts
 ;; shift is vector of begin of shift record and corresponding sleep/wake records
 
-(defn split-with_r [result under-construction predicate coll]
+(defn split-with_recursion [result under-construction predicate coll]
   (if (empty? coll)
     (conj result under-construction)
     (if (predicate (first coll))
@@ -17,7 +18,7 @@
 (defn split-with [predicate coll]
   (if (empty? coll)
     coll
-    (split-with_r [] [(first coll)] predicate (rest coll))))
+    (split-with_recursion [] [(first coll)] predicate (rest coll))))
 
 (defn split-by-inclusion [coll str]
   (split-with #(string/includes? % str) coll))
@@ -59,15 +60,20 @@
 
 ;; find guard-id with highest total, find his minute with highest count
 
-(defn combine [minute-map1 minute-map2]
+(defn combine-minute-maps [minute-map1 minute-map2]
   (let [total (+ (minute-map1 :total) (minute-map2 :total))
         minutes (merge-with + (minute-map1 :minutes) (minute-map2 :minutes))]
     {:total total :minutes minutes}))
 
-(defn key-max-value "returns key in m for which (f value) is highest" [f m]
+(defn combine-registers
+  ([] {})
+  ([reg1 reg2]
+    (merge-with combine-minute-maps reg1 reg2)))
+
+(defn key-max-value "returns key in m for which (f value) is maximal" [f m]
   (key (apply max-key (fn [[_ v]] (f v)) m)))
 
-(let [final-register (reduce (partial merge-with combine) {} registers)
+(let [final-register (reduce combine-registers registers)
       sleepiest-guard-G-id (key-max-value #(% :total) final-register)
       G-minutes ((final-register sleepiest-guard-G-id) :minutes)
       G-highest-minute (key-max-value #(identity %) G-minutes)]
