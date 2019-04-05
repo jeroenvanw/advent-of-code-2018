@@ -5,7 +5,7 @@
             [clojure.string :as string]))
 
 ;; The input text is a single line that ends in a newline character.
-;; first is applied to remove the newline character.
+;; (first (input/lines 5)) gets the input as a string without the newline character.
 (def polymer (seq (first (input/lines 5))))
 
 (defn pair? [char1 char2]
