@@ -34,6 +34,8 @@
 
 ;; part 2
 
+;; (Character/toLowerCase \A) inlined is 10 times faster than (first (string/lower-case \A))
+;; inline. However, when not inline, Character/toLowerCase is thirty times slower
 ;; clojure.string/lower-case outputs a string, not a character.
 ;; first is applied to turn the string (containing a single character)
 ;; into a character.
