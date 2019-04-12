@@ -2,5 +2,7 @@
   (:require [clojure.java.io :as io]))
 
 (defn lines [n]
-  (let [input (slurp (str "resources/input/" n ".txt"))]
-    (clojure.string/split-lines input)))
+  (clojure.string/split-lines (raw n)))
+
+(defn raw [n]
+  (slurp (str "resources/input/" n ".txt")))
