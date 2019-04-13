@@ -1,4 +1,4 @@
-;; an optimized approach (~1000 times faster)
+;; an optimized approach (~10 times faster)
 
 (ns advent-of-code-2018.5-2
   (:require [advent-of-code-2018.input :as input]
