@@ -11,3 +11,7 @@
 (defn x [[x y]] x)
 
 (defn y [[x y]] y)
+
+(defn distance [coordinate1 coordinate2]
+  (+  (Math/abs (- (x coordinate1) (x coordinate2)))
+      (Math/abs (- (y coordinate1) (y coordinate2)))))
