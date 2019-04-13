@@ -9,13 +9,15 @@
 
 ;; part 2
 
-(defn absorb [resulting-freqs changes resulting-freq count]
+(defn absorb [resulting-freqs changes resulting-freq]
   (let [new-resulting-freq (+ resulting-freq (first changes))]
     (if (contains? resulting-freqs new-resulting-freq)
-      [new-resulting-freq count]
-      (recur (conj resulting-freqs new-resulting-freq) (rest changes) new-resulting-freq (inc count)
-        ))))
+      new-resulting-freq
+      (recur
+        (conj resulting-freqs new-resulting-freq)
+        (rest changes)
+        new-resulting-freq))))
 
 (comment
-((absorb #{} (cycle (map load-string (input/lines 1))) 0 0) 0)
+(absorb #{} (cycle (map load-string (input/lines 1))) 0)
 )
