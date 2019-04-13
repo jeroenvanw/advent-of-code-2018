@@ -1,4 +1,21 @@
 (ns advent-of-code-2018.1
   (:require [advent-of-code-2018.input :as input]))
 
-(reduce + 0 (map load-string (input/lines 1)))
+(def input (take 10 (input/lines 1)))
+
+(comment
+(reduce + (map load-string (input/lines 1)))
+)
+
+;; part 2
+
+(defn absorb [resulting-freqs changes resulting-freq count]
+  (let [new-resulting-freq (+ resulting-freq (first changes))]
+    (if (contains? resulting-freqs new-resulting-freq)
+      [new-resulting-freq count]
+      (recur (conj resulting-freqs new-resulting-freq) (rest changes) new-resulting-freq (inc count)
+        ))))
+
+(comment
+((absorb #{} (cycle (map load-string (input/lines 1))) 0 0) 0)
+)
