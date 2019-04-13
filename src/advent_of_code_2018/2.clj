@@ -14,3 +14,5 @@
   (count (filter #(contains-letter-n-times? % n) box-ids)))
 
 (* (count-box-ids 2) (count-box-ids 3))
+
+;;  part 2
