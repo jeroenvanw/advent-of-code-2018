@@ -1,0 +1,24 @@
+-- recursively construct tree
+groot probleem opgelost: recursief een balanced binary search tree bouwen.
+het probleem was dat ik in dezelfde recursieve stap tweemaal
+recur wilde gebruiken; eenmaal voor links, eenmaal voor rechts.
+
+Mijn oplossing hiervoor is een to-do stack; iedere iteratie
+pakt 1 item van de to-do stack en plaatst 0, 1 of 2 nieuwe
+items op de to-do stack.
+
+
+-- nil vs empty
+of liever, butlast vs rest.
+
+(def singleton [1])
+(rest singleton) # ()
+(butlast singleton) # nil
+
+blijkbaar is het zo dat van oudsher nil wordt gebruik om
+empty lists aan te geven (onderdeel van 'nil punning').
+Er worden argumenten gegeven op basis van handigheid;
+zelf vind ik het lelijk. We praten over lijsten,
+dus ik verwacht een lege lijst.
+Om me te conformeren aan de idiomacy van Clojure heb ik
+van de lege lijst maar nil gemaakt.
