@@ -15,4 +15,17 @@
 
 (* (count-box-ids 2) (count-box-ids 3))
 
-;;  part 2
+;;;;;;
+
+(comment
+
+  (apply * (for [n [2 3]]
+             (->> box-ids
+                  (filter #(-> %
+                               frequencies
+                               vals
+                               set
+                               (contains? n)))
+                  count)))
+
+  1)

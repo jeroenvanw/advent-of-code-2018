@@ -21,3 +21,24 @@
 (comment
 (absorb #{} (cycle (map load-string (input/lines 1))) 0)
 )
+
+(comment
+
+  (defn progressions
+    [coll]
+    (reductions (fn [acc v] (conj acc v)) [] coll))
+
+  ;; works fine with low input, but very slow for actual input
+  (->> (input/lines 1)
+       (cycle)
+       (map load-string)
+       (reductions +)
+       (progressions)
+       (map frequencies)
+       (keep #(->> %
+                   (filter (fn [[k v]] (= 2 v)))
+                   (map (fn [[k v]] k))
+                   (first)))
+       (first))
+
+  1)
