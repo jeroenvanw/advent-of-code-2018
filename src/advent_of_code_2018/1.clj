@@ -1,5 +1,6 @@
 (ns advent-of-code-2018.1
-  (:require [advent-of-code-2018.input :as input]))
+  (:require [advent-of-code-2018.input :as input]
+            [meander.epsilon :as m]))
 
 (def input (take 10 (input/lines 1)))
 
